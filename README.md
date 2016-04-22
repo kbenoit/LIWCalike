@@ -1,4 +1,4 @@
-**Master branch** \[![Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)\]\[![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master)\](<https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master>)
+**Master branch** \[![Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)\]
 
 LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
 -----------------------------------------------------------------------
