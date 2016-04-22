@@ -1,2 +1,10 @@
+r_packages:
+  - knitr
+  - rmarkdown
+
 language: r
-cache: packages
+sudo: true
+
+env:
+  global:
+    - R_CHECK_ARGS="--no-build-vignettes"

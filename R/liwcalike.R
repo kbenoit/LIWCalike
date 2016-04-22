@@ -37,9 +37,9 @@
 #' # LIWC says 12 words
 #'
 #' \dontrun{# works with LIWC 2015 dictionary too
-#' liwcDict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
-#'                        format = "LIWC")
-#' inaugLIWCanalysis <- liwcalike(inaugTexts, liwcDict)
+#' liwc2015dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
+#'                            format = "LIWC")
+#' inaugLIWCanalysis <- liwcalike(inaugTexts, liwc2015dict)
 #' }
 #' @export
 #' @import quanteda
