@@ -1,0 +1,10 @@
+Test sentence for LIWCalike.  Second sentence.
+Each row is a document.
+Comma, period.
+The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.
+LOL :-).
+(Parentheses) for $100.
+Say "what" again!!
+Why are we here?
+Other punctation: ^; %, &.
+Sentence one.  Sentence two! :-)

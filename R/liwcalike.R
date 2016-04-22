@@ -8,6 +8,8 @@
 #'   vector for analysis
 #' @param dictionary a \pkg{quanteda} \link[quanteda]{dictionary} object
 #'   supplied for analysis
+#' @param toLower convert to common (lower) case before tokenizing
+#' @param verbose if \code{TRUE} print status messages during processing
 #' @param ... options passed to \code{\link[quanteda]{tokenize}} offering
 #'   finer-grained control over how "words" are defined
 #' @return a data.frame object containing the analytic results, one row per
@@ -20,25 +22,41 @@
 #'   texts into smaller units based on user-supplied tags, sentence, or
 #'   paragraph boundaries.
 #' @examples
+#' liwcalike(testphrases)
+#'
+#' # examples for comparison
+#' txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
+#' myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
+#'                           colorFixed = "red",
+#'                           colorGlob = "red*",
+#'                           mwe = "out of"))
+#' liwcalike(txt, myDict, what = "word")
+#' liwcalike(txt, myDict, what = "fasterword")
+#' (toks <- tokenize(txt, what = "fasterword", removeHyphens = TRUE))
+#' length(toks[[1]])
+#' # LIWC says 12 words
+#'
+#' \dontrun{# works with LIWC 2015 dictionary too
 #' liwcDict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
 #'                        format = "LIWC")
-#' inaugLIWCanalysis <- liwc(inaugTexts, liwcDict)
-#'
+#' inaugLIWCanalysis <- liwcalike(inaugTexts, liwcDict)
+#' }
 #' @export
-liwc <- function(x, ...) {
-    UseMethod("liwc")
+#' @import quanteda
+liwcalike <- function(x, ...) {
+    UseMethod("liwcalike")
 }
 
 
-#' @rdname liwc
+#' @rdname liwcalike
 #' @export
-liwc.corpus <- function(x, ...) {
-    liwc(texts(x), ...)
+liwcalike.corpus <- function(x, ...) {
+    liwcalike(texts(x), ...)
 }
 
-#' @rdname liwc
+#' @rdname liwcalike
 #' @export
-liwc.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE, ...) {
+liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE, ...) {
 
     ## initialize results data.frame
     ## similar to "Filename" and Segment
@@ -48,7 +66,7 @@ liwc.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE,
                    stringsAsFactors = FALSE)
 
     ## get readability before lowercasing
-    WPS <- readability(x, "meanSentenceLength", ...)
+    WPS <- readability(x, "meanSentenceLength") #, ...)
 
     ## lower case the texts if required
     if (toLower) x <- toLower(x)
@@ -62,7 +80,7 @@ liwc.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE,
     }
 
     ## tokenize and form the dfm
-    toks <- tokenize(x, ...)
+    toks <- tokenize(x, removePunct = TRUE, removeHyphens = TRUE, ...)
     dfmAll <- dfm(toks, verbose = FALSE)
     if (!is.null(dictionary))
         dfmDict <- dfm(toks, verbose = FALSE, dictionary = dictionary)
@@ -86,7 +104,8 @@ liwc.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE,
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
         result <- cbind(result,
-                        as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)) * 100))
+                        quanteda::as.data.frame(dfmDict / rep(result[["WC"]],
+                                                              each = nfeature(dfmDict))) * 100)
 
     ## add punctuation counts
     # AllPunc
@@ -102,9 +121,12 @@ liwc.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE,
     # Parenth -- note this is specified as "pairs of parentheses"
     # OtherP
 
+    # format the result
+    result[, which(names(result)=="Sixltr") : ncol(result)] <-
+        format(result[, which(names(result)=="Sixltr") : ncol(result)],
+               digits = 4, trim = TRUE)
+
     result
 }
 
-
-# the word counts
 
