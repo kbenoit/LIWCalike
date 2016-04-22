@@ -1,0 +1,20 @@
+Package: LIWCalike
+Type: Package
+Title: Text analysis similar to the Linguistic Inquiry and Word Count (LIWC)
+Version: 0.1.0
+Date: 2016-04-22
+Author: Kenneth Benoit
+Maintainer: Kenneth Benoit <kbenoit@lse.ac.uk>
+Description: Built on the quanteda package for text analysis, LIWCalikes provides a simple interface
+to the analysis of text by counting words and other textual features, including the application of
+a dictionary to produce a tabular report of percentages.  This provides similar functionality to the
+LIWC stand-alone software.  The user must a dictionary, which can include one of the custom LIWC dictionaries
+if these have been purchased from http://liwc.wpengine.com.
+License: GPL-3
+LazyData: TRUE
+Depends: quanteda
+Imports: stringi
+URL: http://github.com/kbenoit/LIWCalike
+Encoding: UTF-8
+BugReports: https://github.com/kbenoit/LIWCalike/issues
+VignetteBuilder: knitr
