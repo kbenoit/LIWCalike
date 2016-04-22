@@ -1,4 +1,4 @@
-**Master branch** \[![Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)\]
+**Master branch** \[![Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)\] (Note: build will **FAIL** until I push the new **quanteda** to CRAN!)
 
 LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
 -----------------------------------------------------------------------
