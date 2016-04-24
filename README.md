@@ -3,7 +3,9 @@
 LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
 -----------------------------------------------------------------------
 
-Built on the quanteda package for text analysis, LIWCalikes provides a simple interface to the analysis of text by counting words and other textual features, including the application of a dictionary to produce a tabular report of percentages. This provides similar functionality to the LIWC stand-alone software. The user must a dictionary, which can include one of the custom LIWC dictionaries if these have been purchased from <http://liwc.wpengine.com>, or any other dictionary supplied by the user.
+Built on the quanteda package for text analysis, LIWCalikes provides a simple interface to the analysis of text by counting words and other textual features, including the application of a dictionary to produce a tabular report of percentages. This provides similar functionality to the LIWC stand-alone software.
+
+The user must supply a dictionary, which can include one of the custom LIWC dictionaries if these have been purchased from <http://liwc.wpengine.com>, or any other dictionary supplied by the user. The `dictionary()` constructor of the **quanteda** package, on which **LIWCalike** is built, can read both LIWC and Wordstat-formatted dictionary files, or you can use it to create a dictionary from an R list object (a named list of character vectors, where each character vector is a set of dictionary match patterns and its associated name is the dictionary key).
 
 ### Differences from the LIWC standalone software
 
@@ -33,7 +35,7 @@ Using it is quite straightforward:
 require(LIWCalike)
 #> Loading required package: LIWCalike
 #> Loading required package: quanteda
-#> quanteda version 0.9.5.20
+#> quanteda version 0.9.5.22
 #> 
 #> Attaching package: 'quanteda'
 #> The following object is masked from 'package:base':
