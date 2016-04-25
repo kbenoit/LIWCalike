@@ -62,8 +62,7 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
     ## similar to "Filename" and Segment
     result <-
         data.frame(docname = if (is.null(names(x))) paste0("text", 1:length(x)) else names(x),
-                   Segment = 1:length(x),
-                   stringsAsFactors = FALSE)
+                   Segment = 1:length(x), row.names = NULL, stringsAsFactors = FALSE)
 
     ## get readability before lowercasing
     WPS <- readability(x, "meanSentenceLength") #, ...)
@@ -99,27 +98,51 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
     result[["Sixltr"]] <- sapply(toks, function(y) sum(stringi::stri_length(y) > 6)) / result[["WC"]] * 100
 
     ## Dic (percentage of words in the dictionary)
-    result[["Dic"]] <- if (!is.null(dictionary)) ntoken(dfmAll) / ntoken(dfmDict) * 100 else NA
+    result[["Dic"]] <- if (!is.null(dictionary)) ntoken(dfmDict) / ntoken(dfmAll) * 100 else NA
 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
         result <- cbind(result,
-                        quanteda::as.data.frame(dfmDict / rep(result[["WC"]],
-                                                              each = nfeature(dfmDict))) * 100)
+                        quanteda::as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)),
+                                                row.names = NULL) * 100)
 
-    ## add punctuation counts
+    ## punctuation counts
     # AllPunc
+    result[["AllPunc"]] <- stringi::stri_count_charclass(x, "\\p{P}") / result[["WC"]] * 100
+
     # Period
+    result[["Period"]] <- stringi::stri_count_fixed(x, ".") / result[["WC"]] * 100
+
     # Comma
+    result[["Comma"]] <- stringi::stri_count_fixed(x, ",") / result[["WC"]] * 100
+
     # Colon
+    result[["Colon"]] <- stringi::stri_count_fixed(x, ":") / result[["WC"]] * 100
+
     # SemiC
+    result[["SemiC"]] <- stringi::stri_count_fixed(x, ";") / result[["WC"]] * 100
+
     # QMark
+    result[["QMark"]] <- stringi::stri_count_fixed(x, "?") / result[["WC"]] * 100
+
     # Exclam
+    result[["Exclam"]] <- stringi::stri_count_fixed(x, "!") / result[["WC"]] * 100
+
     # Dash
+    result[["Dash"]] <- stringi::stri_count_charclass(x, "\\p{Pd}") / result[["WC"]] * 100
+
     # Quote
+    result[["Quote"]] <- stringi::stri_count_charclass(x, "[:QUOTATION_MARK:]")/ result[["WC"]] * 100
+
     # Apostro
+    result[["Apostro"]] <- stringi::stri_count_charclass(x, "['\\u2019]") / result[["WC"]] * 100
+
     # Parenth -- note this is specified as "pairs of parentheses"
+    result[["Parenth"]] <- min(c(stringi::stri_count_fixed(x, "("),
+                                  stringi::stri_count_fixed(x, ")"))) / result[["WC"]] * 100
+
     # OtherP
+    result[["OtherP"]] <- stringi::stri_count_charclass(x, "\\p{Po}") / result[["WC"]] * 100
 
     # format the result
     result[, which(names(result)=="Sixltr") : ncol(result)] <-
