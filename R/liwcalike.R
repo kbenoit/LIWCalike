@@ -103,8 +103,8 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
         result <- cbind(result,
-                        quanteda::as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)),
-                                                row.names = NULL) * 100)
+                        as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)),
+                                      row.names = FALSE) * 100)
 
     ## punctuation counts
     # AllPunc
