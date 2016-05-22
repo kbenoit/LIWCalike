@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 [![CRAN Version](http://www.r-pkg.org/badges/version/LIWCalike)](http://cran.r-project.org/package=LIWCalike)
 ![Downloads](http://cranlogs.r-pkg.org/badges/LIWCalike)
 [![Travis-CI Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)](https://travis-ci.org/kbenoit/LIWCalike)
-[![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/LIWCalike.svg?branch=master)]
+[![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/LIWCalike.svg?branch=master)](https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master)
 
 
 ## LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
