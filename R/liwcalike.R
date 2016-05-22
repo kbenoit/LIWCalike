@@ -104,7 +104,7 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
     if (!is.null(dictionary))
         result <- cbind(result,
                         as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)),
-                                      row.names = FALSE) * 100)
+                                      row.names = 1:nrow(result)) * 100)
 
     ## punctuation counts
     # AllPunc
