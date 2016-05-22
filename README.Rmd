@@ -76,12 +76,10 @@ output[, c(1:7, ncol(output)-2)]
 **LIWCalike** is currently only available on GitHub, not on CRAN.  The best method of installing it is through the **devtools** package:
 
 ```
-devtools::install_github("kbenoit/quanteda")
 devtools::install_github("kbenoit/LIWCalike")
 ```
 
-The first install is present since you need to have installed the **quanteda** package of at least version 0.9.5-20 for this 
-to work, since that update implemented multi-word dictionary values.  As of 2016-04-16, this version was not on CRAN.
+This will also automatically install the  **quanteda** package on which **LIWCalike** is built.
 
 
 ## Comments and feedback
