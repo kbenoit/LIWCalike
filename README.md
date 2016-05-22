@@ -1,4 +1,4 @@
-**Master branch** \[![Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)\] (Note: build will **FAIL** until I push the new **quanteda** to CRAN!)
+[![CRAN Version](http://www.r-pkg.org/badges/version/LIWCalike)](http://cran.r-project.org/package=LIWCalike) ![Downloads](http://cranlogs.r-pkg.org/badges/LIWCalike) [![Travis-CI Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)](https://travis-ci.org/kbenoit/LIWCalike) \[![codecov.io](https://codecov.io/github/kbenoit/quanteda/LIWCalike.svg?branch=master)\]
 
 LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
 -----------------------------------------------------------------------
@@ -35,7 +35,7 @@ Using it is quite straightforward:
 require(LIWCalike)
 #> Loading required package: LIWCalike
 #> Loading required package: quanteda
-#> quanteda version 0.9.5.22
+#> quanteda version 0.9.6.9
 #> 
 #> Attaching package: 'quanteda'
 #> The following object is masked from 'package:base':
@@ -58,11 +58,11 @@ testphrases
 #>  [2] "Each row is a document."                                          
 #>  [3] "Comma, period."                                                   
 #>  [4] "The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(."
-#>  [5] "LOL :-)."                                                         
+#>  [5] "LOL :)."                                                          
 #>  [6] "(Parentheses) for $100."                                          
 #>  [7] "Say \"what\" again!!"                                             
 #>  [8] "Why are we here?"                                                 
-#>  [9] "Other punctation: §; ±."                                          
+#>  [9] "Other punctation: ^; %, &."                                       
 #> [10] "Sentence one.  Sentence two! :-)"
 
 # call LIWCalike
@@ -70,28 +70,28 @@ output <- liwcalike(testphrases, liwc2007dict)
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
-#>        docname Segment WC WPS Sixltr    Dic
-#> text1    text1       1  6   3  50.00 120.00
-#> text2    text2       2  5   5  20.00  50.00
-#> text3    text3       3  2   2   0.00 100.00
-#> text4    text4       4 12  12  16.67  40.00
-#> text5    text5       5  1   1   0.00  33.33
-#> text6    text6       6  3   3  33.33  75.00
-#> text7    text7       7  3   3   0.00  30.00
-#> text8    text8       8  4   4   0.00  26.67
-#> text9    text9       9  2   2  50.00  66.67
-#> text10  text10      10  4   2  50.00 100.00
-#>        LINGUISTIC PROCESSES.FUNCTION WORDS SPOKEN CATEGORIES.ASSENT
-#> text1                                33.33                        0
-#> text2                                50.00                        0
-#> text3                                 0.00                        0
-#> text4                                66.67                        0
-#> text5                                 0.00                       25
-#> text6                                16.67                        0
-#> text7                                33.33                        0
-#> text8                                50.00                        0
-#> text9                                16.67                        0
-#> text10                               33.33                        0
+#>    docname Segment WC WPS Sixltr    Dic
+#> 1    text1       1  6   3  50.00  83.33
+#> 2    text2       2  5   5  20.00 200.00
+#> 3    text3       3  2   2   0.00 100.00
+#> 4    text4       4 12  12  16.67 250.00
+#> 5    text5       5  1   1   0.00 300.00
+#> 6    text6       6  3   3  33.33 133.33
+#> 7    text7       7  3   3   0.00 333.33
+#> 8    text8       8  4   4   0.00 375.00
+#> 9    text9       9  2   2  50.00 150.00
+#> 10  text10      10  4   2  50.00 100.00
+#>    LINGUISTIC PROCESSES.FUNCTION WORDS Apostro
+#> 1                                33.33       0
+#> 2                                50.00       0
+#> 3                                 0.00       0
+#> 4                                66.67       0
+#> 5                                 0.00       0
+#> 6                                16.67       0
+#> 7                                33.33       0
+#> 8                                50.00       0
+#> 9                                16.67       0
+#> 10                               33.33       0
 ```
 
 How to Install
