@@ -2,15 +2,15 @@
 % Please edit documentation in R/liwcalike.R
 \name{liwcalike}
 \alias{liwcalike}
-\alias{liwcalike.character}
 \alias{liwcalike.corpus}
+\alias{liwcalike.character}
 \title{analyze text in a LIWC-alike fashion}
 \usage{
 liwcalike(x, ...)
 
 \method{liwcalike}{corpus}(x, ...)
 
-\method{liwcalike}{character}(x, dictionary = NULL, toLower = TRUE,
+\method{liwcalike}{character}(x, dictionary = NULL, tolower = TRUE,
   verbose = TRUE, ...)
 }
 \arguments{
@@ -23,7 +23,7 @@ finer-grained control over how "words" are defined}
 \item{dictionary}{a \pkg{quanteda} \link[quanteda]{dictionary} object
 supplied for analysis}
 
-\item{toLower}{convert to common (lower) case before tokenizing}
+\item{tolower}{convert to common (lower) case before tokenizing}
 
 \item{verbose}{if \code{TRUE} print status messages during processing}
 }
@@ -46,25 +46,33 @@ Linguistic Inquiry and Word Count standalone software distributed at
   texts into smaller units based on user-supplied tags, sentence, or
   paragraph boundaries.
 }
+
 \examples{
-liwcalike(testphrases)
+liwcalike(data_char_testphrases)
 
 # examples for comparison
 txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
-myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
-                          colorFixed = "red",
-                          colorGlob = "red*",
-                          mwe = "out of"))
+myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
+                                    colorFixed = "red",
+                                    colorGlob = "red*",
+                                    mwe = "out of"))
 liwcalike(txt, myDict, what = "word")
 liwcalike(txt, myDict, what = "fasterword")
-(toks <- tokenize(txt, what = "fasterword", removeHyphens = TRUE))
+(toks <- quanteda::tokens(txt, what = "fasterword", removeHyphens = TRUE))
 length(toks[[1]])
 # LIWC says 12 words
 
 \dontrun{# works with LIWC 2015 dictionary too
 liwc2015dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
                            format = "LIWC")
-inaugLIWCanalysis <- liwcalike(inaugTexts, liwc2015dict)
+inaugLIWCanalysis <- liwcalike(quanteda::data_corpus_inaugural, liwc2015dict)
+inaugLIWCanalysis[1:6, 1:10]
+          docname    Segment   WC      WPS Sixltr   Dic function pronoun   ppron       i
+## 1 1789-Washington       1 1539 62.21739  24.37 240.7   52.437  12.021  62.585 2.20845
+## 2 1793-Washington       2  147 33.75000  25.17 236.7    5.068   1.170   6.803 0.34870
+## 3      1797-Adams       3 2581 62.72973  24.64 226.4   82.456  14.295  58.503 1.31732
+## 4  1801-Jefferson       4 1931 42.19512  20.40 241.1   62.183  15.724  83.673 1.31732
+## 5  1805-Jefferson       5 2381 48.13333  22.97 241.7   79.272  21.572 119.728 1.43355
+## 6    1809-Madison       6 1265 56.04762  24.82 239.0   43.015   7.992  42.857 1.23983
 }
 }
-

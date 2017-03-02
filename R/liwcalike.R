@@ -8,7 +8,7 @@
 #'   vector for analysis
 #' @param dictionary a \pkg{quanteda} \link[quanteda]{dictionary} object
 #'   supplied for analysis
-#' @param toLower convert to common (lower) case before tokenizing
+#' @param tolower convert to common (lower) case before tokenizing
 #' @param verbose if \code{TRUE} print status messages during processing
 #' @param ... options passed to \code{\link[quanteda]{tokenize}} offering
 #'   finer-grained control over how "words" are defined
@@ -22,24 +22,32 @@
 #'   texts into smaller units based on user-supplied tags, sentence, or
 #'   paragraph boundaries.
 #' @examples
-#' liwcalike(testphrases)
+#' liwcalike(data_char_testphrases)
 #'
 #' # examples for comparison
 #' txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
-#' myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
-#'                           colorFixed = "red",
-#'                           colorGlob = "red*",
-#'                           mwe = "out of"))
+#' myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
+#'                                     colorFixed = "red",
+#'                                     colorGlob = "red*",
+#'                                     mwe = "out of"))
 #' liwcalike(txt, myDict, what = "word")
 #' liwcalike(txt, myDict, what = "fasterword")
-#' (toks <- tokenize(txt, what = "fasterword", removeHyphens = TRUE))
+#' (toks <- quanteda::tokens(txt, what = "fasterword", removeHyphens = TRUE))
 #' length(toks[[1]])
 #' # LIWC says 12 words
 #'
 #' \dontrun{# works with LIWC 2015 dictionary too
 #' liwc2015dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
 #'                            format = "LIWC")
-#' inaugLIWCanalysis <- liwcalike(inaugTexts, liwc2015dict)
+#' inaugLIWCanalysis <- liwcalike(quanteda::data_corpus_inaugural, liwc2015dict)
+#' inaugLIWCanalysis[1:6, 1:10]
+#'           docname    Segment   WC      WPS Sixltr   Dic function pronoun   ppron       i
+#' ## 1 1789-Washington       1 1539 62.21739  24.37 240.7   52.437  12.021  62.585 2.20845
+#' ## 2 1793-Washington       2  147 33.75000  25.17 236.7    5.068   1.170   6.803 0.34870
+#' ## 3      1797-Adams       3 2581 62.72973  24.64 226.4   82.456  14.295  58.503 1.31732
+#' ## 4  1801-Jefferson       4 1931 42.19512  20.40 241.1   62.183  15.724  83.673 1.31732
+#' ## 5  1805-Jefferson       5 2381 48.13333  22.97 241.7   79.272  21.572 119.728 1.43355
+#' ## 6    1809-Madison       6 1265 56.04762  24.82 239.0   43.015   7.992  42.857 1.23983
 #' }
 #' @export
 #' @import quanteda
@@ -56,7 +64,7 @@ liwcalike.corpus <- function(x, ...) {
 
 #' @rdname liwcalike
 #' @export
-liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = TRUE, ...) {
+liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = TRUE, ...) {
 
     ## initialize results data.frame
     ## similar to "Filename" and Segment
@@ -65,28 +73,29 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
                    Segment = 1:length(x), row.names = NULL, stringsAsFactors = FALSE)
 
     ## get readability before lowercasing
-    WPS <- readability(x, "meanSentenceLength") #, ...)
+    WPS <- quanteda::textstat_readability(x, "meanSentenceLength") #, ...)
 
-    ## lower case the texts if required
-    if (toLower) x <- toLower(x)
 
-    ## if a dictionary is supplied, apply it to the dfm
-    # first pre-process the text for multi-word dictionary values
-    if (!is.null(dictionary)) {
-        x <- phrasetotoken(x, dictionary, case_insensitive = toLower)
-        if (dictionary@concatenator != "_")
-            dictionary <- lapply(dictionary, stringi::stri_replace_all_fixed, dictionary@concatenator, "_")
-    }
+    # ## if a dictionary is supplied, apply it to the dfm
+    # # first pre-process the text for multi-word dictionary values
+    # if (!is.null(dictionary)) {
+    #     x <- tokens_compound(x, dictionary, case_insensitive = tolower)
+    #     if (dictionary@concatenator != "_")
+    #         dictionary <- lapply(dictionary, stringi::stri_replace_all_fixed, dictionary@concatenator, "_")
+    # }
 
     ## tokenize and form the dfm
-    toks <- tokenize(x, removePunct = TRUE, removeHyphens = TRUE, ...)
-    dfmAll <- dfm(toks, verbose = FALSE)
-    if (!is.null(dictionary))
-        dfmDict <- dfm(toks, verbose = FALSE, dictionary = dictionary)
-        # or applyDictionary() to dfm
+    toks <- quanteda::tokens(x, removeHyphens = TRUE)
+    
+    ## lower case the texts if required
+    if (tolower) 
+        toks <- quanteda::tokens_tolower(toks)
+    
+    ## form the dfm
+    dfmDict <- quanteda::dfm(toks, dictionary = dictionary, verbose = FALSE)
 
     ## WC
-    result[["WC"]] <- ntoken(toks)
+    result[["WC"]] <- quanteda::ntoken(toks)
     # maybe this should be ntoken(dfmAll) - does LIWC count punctuation??
 
     ## no implementation for: Analytic	Clout	Authentic	Tone
@@ -98,7 +107,7 @@ liwcalike.character <- function(x, dictionary = NULL, toLower = TRUE, verbose = 
     result[["Sixltr"]] <- sapply(toks, function(y) sum(stringi::stri_length(y) > 6)) / result[["WC"]] * 100
 
     ## Dic (percentage of words in the dictionary)
-    result[["Dic"]] <- if (!is.null(dictionary)) ntoken(dfmDict) / ntoken(dfmAll) * 100 else NA
+    result[["Dic"]] <- if (!is.null(dictionary)) ntoken(dfmDict) / ntoken(toks) * 100 else NA
 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
