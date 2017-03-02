@@ -84,8 +84,9 @@ devtools::install_github("kbenoit/LIWCalike")
 This will also automatically install the  **quanteda** package on which **LIWCalike** is built.
 
 
-## Comments and feedback
+## Comments, feedback, and code of conduct
 
 I welcome your comments and feedback.  Please file issues on the issues page, and/or send me comments at kbenoit@lse.ac.uk.
 
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
