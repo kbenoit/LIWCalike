@@ -34,26 +34,30 @@ Using it is quite straightforward:
 ``` r
 require(LIWCalike)
 #> Loading required package: LIWCalike
+require(quanteda)
 #> Loading required package: quanteda
-#> quanteda version 0.9.6.9
+#> quanteda version 0.9.9.29
+#> Using 7 of 8 cores for parallel computing
 #> 
 #> Attaching package: 'quanteda'
+#> The following object is masked from 'package:utils':
+#> 
+#>     View
 #> The following object is masked from 'package:base':
 #> 
 #>     sample
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 
-                           format = "wordstat")
-#> Warning in strsplit(w, "\\("): input string 1 is invalid in this locale
+                           format = "wordstat", encoding = "WINDOWS-1252")
 tail(liwc2007dict, 1)
 #> $`SPOKEN CATEGORIES.FILLERS`
-#>  [1] "blah"         NA             "idontknow"    "imean"       
+#>  [1] "blah"         "idon’tknow"   "idontknow"    "imean"       
 #>  [5] "ohwell"       "oranything*"  "orsomething*" "orwhatever*" 
 #>  [9] "rr*"          "yakn*"        "ykn*"         "youknow*"
 
 # our test data
-testphrases
+data_char_testphrases
 #>  [1] "Test sentence for LIWCalike.  Second sentence."                   
 #>  [2] "Each row is a document."                                          
 #>  [3] "Comma, period."                                                   
@@ -66,32 +70,32 @@ testphrases
 #> [10] "Sentence one.  Sentence two! :-)"
 
 # call LIWCalike
-output <- liwcalike(testphrases, liwc2007dict)
+output <- liwcalike(data_char_testphrases, liwc2007dict)
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
 #>    docname Segment WC WPS Sixltr    Dic
-#> 1    text1       1  6   3  50.00  83.33
-#> 2    text2       2  5   5  20.00 200.00
-#> 3    text3       3  2   2   0.00 100.00
-#> 4    text4       4 12  12  16.67 250.00
-#> 5    text5       5  1   1   0.00 300.00
-#> 6    text6       6  3   3  33.33 133.33
-#> 7    text7       7  3   3   0.00 333.33
-#> 8    text8       8  4   4   0.00 375.00
-#> 9    text9       9  2   2  50.00 150.00
-#> 10  text10      10  4   2  50.00 100.00
+#> 1    text1       1  8   3  37.50  62.50
+#> 2    text2       2  6   5  16.67 166.67
+#> 3    text3       3  4   2   0.00  50.00
+#> 4    text4       4 16  12  12.50 187.50
+#> 5    text5       5  4   1   0.00  75.00
+#> 6    text6       6  7   3  14.29  57.14
+#> 7    text7       7  7   3   0.00 142.86
+#> 8    text8       8  5   4   0.00 300.00
+#> 9    text9       9  9   2  11.11  33.33
+#> 10  text10      10  9   2  22.22  44.44
 #>    LINGUISTIC PROCESSES.FUNCTION WORDS Apostro
-#> 1                                33.33       0
-#> 2                                50.00       0
-#> 3                                 0.00       0
-#> 4                                66.67       0
-#> 5                                 0.00       0
-#> 6                                16.67       0
-#> 7                                33.33       0
-#> 8                                50.00       0
-#> 9                                16.67       0
-#> 10                               33.33       0
+#> 1                                 25.0       0
+#> 2                                 37.5       0
+#> 3                                  0.0       0
+#> 4                                 50.0       0
+#> 5                                  0.0       0
+#> 6                                 12.5       0
+#> 7                                 25.0       0
+#> 8                                 37.5       0
+#> 9                                 12.5       0
+#> 10                                25.0       0
 ```
 
 How to Install

@@ -54,17 +54,18 @@ Using it is quite straightforward:
 
 ```{r}
 require(LIWCalike)
+require(quanteda)
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 
-                           format = "wordstat")
+                           format = "wordstat", encoding = "WINDOWS-1252")
 tail(liwc2007dict, 1)
 
 # our test data
-testphrases
+data_char_testphrases
 
 # call LIWCalike
-output <- liwcalike(testphrases, liwc2007dict)
+output <- liwcalike(data_char_testphrases, liwc2007dict)
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
