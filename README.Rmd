@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 [![CRAN Version](http://www.r-pkg.org/badges/version/LIWCalike)](http://cran.r-project.org/package=LIWCalike)
 ![Downloads](http://cranlogs.r-pkg.org/badges/LIWCalike)
 [![Travis-CI Build Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)](https://travis-ci.org/kbenoit/LIWCalike)
+[![Appveyor Build status](https://ci.appveyor.com/api/projects/status/kn31ca24tnnrbwth/branch/master?svg=true)](https://ci.appveyor.com/project/kbenoit/liwcalike/branch/master)
 [![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/LIWCalike.svg?branch=master)](https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master)
 
 
