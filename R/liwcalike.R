@@ -85,7 +85,7 @@ liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = 
     # }
 
     ## tokenize and form the dfm
-    toks <- quanteda::tokens(x, removeHyphens = TRUE)
+    toks <- quanteda::tokens(x, remove_hyphens = TRUE)
     
     ## lower case the texts if required
     if (tolower) 
