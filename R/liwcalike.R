@@ -8,7 +8,7 @@
 #'   vector for analysis
 #' @param dictionary a \pkg{quanteda} \link[quanteda]{dictionary} object
 #'   supplied for analysis
-#' @param tolower convert to common (lower) case before tokenizing
+#' @param tolower convert to common (lowser) case before tokenizing
 #' @param verbose if \code{TRUE} print status messages during processing
 #' @param ... options passed to \code{\link[quanteda]{tokenize}} offering
 #'   finer-grained control over how "words" are defined
@@ -26,28 +26,28 @@
 #'
 #' # examples for comparison
 #' txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
-#' myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
-#'                                     colorFixed = "red",
-#'                                     colorGlob = "red*",
-#'                                     mwe = "out of"))
+#' myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
+#'                           colorFixed = "red",
+#'                           colorGlob = "red*",
+#'                           mwe = "out of"))
 #' liwcalike(txt, myDict, what = "word")
 #' liwcalike(txt, myDict, what = "fasterword")
-#' (toks <- quanteda::tokens(txt, what = "fasterword", removeHyphens = TRUE))
+#' (toks <- tokens(txt, what = "fasterword", removeHyphens = TRUE))
 #' length(toks[[1]])
 #' # LIWC says 12 words
 #'
 #' \dontrun{# works with LIWC 2015 dictionary too
 #' liwc2015dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2015_English_Flat.dic",
 #'                            format = "LIWC")
-#' inaugLIWCanalysis <- liwcalike(quanteda::data_corpus_inaugural, liwc2015dict)
+#' inaugLIWCanalysis <- liwcalike(data_corpus_inaugural, liwc2015dict)
 #' inaugLIWCanalysis[1:6, 1:10]
-#'           docname    Segment   WC      WPS Sixltr   Dic function pronoun   ppron       i
-#' ## 1 1789-Washington       1 1539 62.21739  24.37 240.7   52.437  12.021  62.585 2.20845
-#' ## 2 1793-Washington       2  147 33.75000  25.17 236.7    5.068   1.170   6.803 0.34870
-#' ## 3      1797-Adams       3 2581 62.72973  24.64 226.4   82.456  14.295  58.503 1.31732
-#' ## 4  1801-Jefferson       4 1931 42.19512  20.40 241.1   62.183  15.724  83.673 1.31732
-#' ## 5  1805-Jefferson       5 2381 48.13333  22.97 241.7   79.272  21.572 119.728 1.43355
-#' ## 6    1809-Madison       6 1265 56.04762  24.82 239.0   43.015   7.992  42.857 1.23983
+#' ##           docname Segment   WC      WPS Sixltr   Dic function article relativ motion
+#' ## 1 1789-Washington       1 1540 62.21739  24.35 253.1   52.403  9.0909 101.361 0.3483
+#' ## 2 1793-Washington       2  147 33.75000  25.17 250.3    5.065  0.9091  10.884 0.0387
+#' ## 3      1797-Adams       3 2584 62.72973  24.61 237.5   82.403 15.0649 163.946 0.3096
+#' ## 4  1801-Jefferson       4 1935 42.19512  20.36 253.2   62.143 10.0000 105.442 0.7353
+#' ## 5  1805-Jefferson       5 2381 48.13333  22.97 255.8   79.221 10.9091 151.701 0.6966
+#' ## 6    1809-Madison       6 1267 56.04762  24.78 258.2   42.987  8.3117  83.673 0.3870
 #' }
 #' @export
 #' @import quanteda
@@ -85,7 +85,7 @@ liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = 
     # }
 
     ## tokenize and form the dfm
-    toks <- quanteda::tokens(x, removeHyphens = TRUE)
+    toks <- quanteda::tokens(x, remove_hyphens = TRUE)
     
     ## lower case the texts if required
     if (tolower) 

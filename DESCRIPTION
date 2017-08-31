@@ -1,8 +1,8 @@
 Package: LIWCalike
 Type: Package
 Title: Text analysis similar to the Linguistic Inquiry and Word Count (LIWC)
-Version: 0.2.0
-Date: 2017-02-02
+Version: 0.3.0
+Date: 2017-08-30
 Author: Kenneth Benoit
 Maintainer: Kenneth Benoit <kbenoit@lse.ac.uk>
 Description: Built on the quanteda package for text analysis, LIWCalike
@@ -14,10 +14,10 @@ Description: Built on the quanteda package for text analysis, LIWCalike
 License: GPL-3
 LazyData: TRUE
 Depends:
-    R (>= 3.2.2)
+    R (>= 3.2.2),
+    quanteda (>= 0.99)
 Imports:
-    stringi,
-    quanteda (>= 0.9.9)
+    stringi 
 URL: http://github.com/kbenoit/LIWCalike
 Encoding: UTF-8
 BugReports: https://github.com/kbenoit/LIWCalike/issues
