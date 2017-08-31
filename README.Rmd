@@ -54,8 +54,7 @@ With the LIWC 2007, external dictionaries were distributed with the software tha
 Using it is quite straightforward:
 
 ```{r}
-require(LIWCalike)
-require(quanteda)
+library("LIWCalike")
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 

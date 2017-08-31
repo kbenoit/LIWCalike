@@ -32,29 +32,28 @@ With the LIWC 2007, external dictionaries were distributed with the software tha
 Using it is quite straightforward:
 
 ``` r
-require(LIWCalike)
-#> Loading required package: LIWCalike
-require(quanteda)
+library("LIWCalike")
 #> Loading required package: quanteda
-#> quanteda version 0.9.9.29
-#> Using 7 of 8 cores for parallel computing
+#> quanteda version 0.99.1
+#> Using 4 of 8 threads for parallel computing
 #> 
 #> Attaching package: 'quanteda'
 #> The following object is masked from 'package:utils':
 #> 
 #>     View
-#> The following object is masked from 'package:base':
-#> 
-#>     sample
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 
                            format = "wordstat", encoding = "WINDOWS-1252")
 tail(liwc2007dict, 1)
-#> $`SPOKEN CATEGORIES.FILLERS`
-#>  [1] "blah"         "idon’tknow"   "idontknow"    "imean"       
-#>  [5] "ohwell"       "oranything*"  "orsomething*" "orwhatever*" 
-#>  [9] "rr*"          "yakn*"        "ykn*"         "youknow*"
+#> Dictionary object with 1 primary key entry and 2 nested levels.
+#> - SPOKEN CATEGORIES:
+#>   - ASSENT:
+#>     - absolutely, agree, ah, alright*, aok, aw, awesome, cool, duh, ha, hah, haha*, heh*, hm*, huh, lol, mm*, oh, ok, okay, okey*, rofl, uhhu*, uhuh, yah, yay, yea, yeah, yep*, yes, yup
+#>   - NON-FLUENCIES:
+#>     - er, hm*, sigh, uh, um, umm*, well, zz*
+#>   - FILLERS:
+#>     - blah, idonï¿½tknow, idontknow, imean, ohwell, oranything*, orsomething*, orwhatever*, rr*, yakn*, ykn*, youknow*
 
 # our test data
 data_char_testphrases
@@ -71,6 +70,7 @@ data_char_testphrases
 
 # call LIWCalike
 output <- liwcalike(data_char_testphrases, liwc2007dict)
+#> Warning: removeHyphens is deprecated; use remove_hyphens instead
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
@@ -78,24 +78,24 @@ output[, c(1:7, ncol(output)-2)]
 #> 1    text1       1  8   3  37.50  62.50
 #> 2    text2       2  6   5  16.67 166.67
 #> 3    text3       3  4   2   0.00  50.00
-#> 4    text4       4 16  12  12.50 187.50
+#> 4    text4       4 18  12  11.11 166.67
 #> 5    text5       5  4   1   0.00  75.00
 #> 6    text6       6  7   3  14.29  57.14
 #> 7    text7       7  7   3   0.00 142.86
 #> 8    text8       8  5   4   0.00 300.00
 #> 9    text9       9  9   2  11.11  33.33
 #> 10  text10      10  9   2  22.22  44.44
-#>    LINGUISTIC PROCESSES.FUNCTION WORDS Apostro
-#> 1                                 25.0       0
-#> 2                                 37.5       0
-#> 3                                  0.0       0
-#> 4                                 50.0       0
-#> 5                                  0.0       0
-#> 6                                 12.5       0
-#> 7                                 25.0       0
-#> 8                                 37.5       0
-#> 9                                 12.5       0
-#> 10                                25.0       0
+#>    will do shorLINGUISTIC PROCESSES.FUNCTION WORDS Apostro
+#> 1                                             25.0       0
+#> 2                                             37.5       0
+#> 3                                              0.0       0
+#> 4                                             50.0       0
+#> 5                                              0.0       0
+#> 6                                             12.5       0
+#> 7                                             25.0       0
+#> 8                                             37.5       0
+#> 9                                             12.5       0
+#> 10                                            25.0       0
 ```
 
 How to Install
@@ -107,7 +107,9 @@ How to Install
 
 This will also automatically install the **quanteda** package on which **LIWCalike** is built.
 
-Comments and feedback
----------------------
+Comments, feedback, and code of conduct
+---------------------------------------
 
 I welcome your comments and feedback. Please file issues on the issues page, and/or send me comments at <kbenoit@lse.ac.uk>.
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
