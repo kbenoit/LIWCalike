@@ -20,7 +20,7 @@ This package is designed for R users and those wishing to build functionality by
 
 -   LIWC color codes the dictionary value matches in your texts and displays these in a nice graphical window.
 
--   LIWC provides four composite measures that are not included in **LIWCalike**: "Analytic", "Clout", "Authentic", and "Tone". These are based on proprietary algorithms, as described and referenced in [Pennebaker, J.W., Boyd, R.L., Jordan, K., & Blackburn, K. (2015). The development and psychometric properties of LIWC2015. Austin, TX: University of Texas at Austin. D OI: 10.15781/T29G6Z](http://liwc.wpengine.com/wp-content/uploads/2015/11/LIWC2015_LanguageManual.pdf).
+-   LIWC provides four composite measures that are not included in **LIWCalike**: "Analytic", "Clout", "Authentic", and "Tone". These are based on proprietary algorithms, as described and refernced in [Pennebaker, J.W., Boyd, R.L., Jordan, K., & Blackburn, K. (2015). The development and psychometric properties of LIWC2015. Austin, TX: University of Texas at Austin. D OI: 10.15781/T29G6Z](http://liwc.wpengine.com/wp-content/uploads/2015/11/LIWC2015_LanguageManual.pdf).
 
 Using dictionaries with LIWCalike
 ---------------------------------
@@ -70,7 +70,6 @@ data_char_testphrases
 
 # call LIWCalike
 output <- liwcalike(data_char_testphrases, liwc2007dict)
-#> Warning: removeHyphens is deprecated; use remove_hyphens instead
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
