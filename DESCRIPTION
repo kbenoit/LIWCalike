@@ -14,10 +14,10 @@ Description: Built on the quanteda package for text analysis, LIWCalike
 License: GPL-3
 LazyData: TRUE
 Depends:
-    R (>= 3.2.2),
-    quanteda (>= 0.99)
+    R (>= 3.2.2)
 Imports:
-    stringi 
+    stringi,
+    quanteda (>= 0.99)
 URL: http://github.com/kbenoit/LIWCalike
 Encoding: UTF-8
 BugReports: https://github.com/kbenoit/LIWCalike/issues
