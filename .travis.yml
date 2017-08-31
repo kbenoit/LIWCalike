@@ -1,10 +1,14 @@
-r_packages:
-  - knitr
-  - rmarkdown
-
 language: r
+cache: packages
+warnings_are_errors: true
 sudo: true
-
+dist: trusty
+latex: false
+r_packages:
+  - covr
 env:
   global:
     - R_CHECK_ARGS="--no-build-vignettes"
+after_success:
+  - Rscript -e 'library(covr);codecov()'
+
