@@ -27,7 +27,7 @@ Using dictionaries with LIWCalike
 
 No dictionaries are supplied with **LIWCalike**, it is up to you to supply these. With the **quanteda** functions for creating or importing dictionaries, however, this is quite easy.
 
-With the LIWC 2007, external dictionaries were distributed with the software that could be used in the format read by Provalis Research's [*Wordstat*](http://provalisresearch.com/products/content-analysis-software/). Because I purchases a license for this product, I have that file and can use it with **LIWCalike**.
+With the LIWC 2007, external dictionaries were distributed with the software that could be used in the format read by Provalis Research's [*Wordstat*](http://provalisresearch.com/products/content-analysis-software/). Because I purchases a license for this product, I have that file and can use it with **LIWCalike**. With LIWC 2015 dictionaries need to be extracted from the `LIWC2015-jfx.jar` file found in the installation folder of LIWC 2015 using `jar -xf LIWC2015-jfx.jar` (the dictionary can then be found in `./app/lib/com/liwc/LIWC2015/data/dict/LIWC2015_English.dic`). Note that in this case `format="LIWC"` needs to specified as parameter to the `dictionary` function.
 
 Using it is quite straightforward:
 
