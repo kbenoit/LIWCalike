@@ -97,6 +97,21 @@ output[, c(1:7, ncol(output)-2)]
 #> 10                                            25.0       0
 ```
 
+LIWCalike can also be used from python with the help of [rpy2](http://rpy2.readthedocs.io/).
+```
+# R dependencies of LIWCAlike
+from rpy2.robjects.packages import importr
+from rpy2.robjects import pandas2ri
+liwcalike = importr("LIWCalike")
+quanteda = importr("quanteda")
+
+# Load Dictionary
+liwc2015dict = quanteda.dictionary(file="/path/to/LIWC2015_English.dic", format = "LIWC")
+txt = rpy2.robjects.vectors.StrVector(df.sentence)  # df.sentence is a pandas Series containing strings (i.e. dtype='O')
+result = liwcalike.liwcalike(txt, liwc2015dict)
+result_df = pandas2ri.ri2py(result)
+```
+
 How to Install
 --------------
 
