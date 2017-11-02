@@ -42,7 +42,7 @@ Linguistic Inquiry and Word Count standalone software distributed at
   segmenting the text.  While this function does not supply segmentation
   options, you can easily achieve the same effect by converting the input
   object into a corpus (if it is not already a corpus) and using
-  \link[quanteda]{changeunits} or \link[quanteda]{segment} to split the input
+  \link[quanteda]{tokens} to split the input
   texts into smaller units based on user-supplied tags, sentence, or
   paragraph boundaries.
 }
@@ -52,13 +52,13 @@ liwcalike(data_char_testphrases)
 
 # examples for comparison
 txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
-myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
+myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
                           colorFixed = "red",
                           colorGlob = "red*",
                           mwe = "out of"))
 liwcalike(txt, myDict, what = "word")
 liwcalike(txt, myDict, what = "fasterword")
-(toks <- tokens(txt, what = "fasterword", removeHyphens = TRUE))
+(toks <- quanteda::tokens(txt, what = "fasterword", removeHyphens = TRUE))
 length(toks[[1]])
 # LIWC says 12 words
 
