@@ -1,7 +1,7 @@
 Package: LIWCalike
 Type: Package
 Title: Text analysis similar to the Linguistic Inquiry and Word Count (LIWC)
-Version: 0.3.0
+Version: 0.3.1
 Date: 2017-08-30
 Author: Kenneth Benoit
 Maintainer: Kenneth Benoit <kbenoit@lse.ac.uk>

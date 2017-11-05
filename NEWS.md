@@ -1,4 +1,6 @@
-# LIWCalike 0.2.0
+# LIWCalike 
+
+# Version 0.3.0 
 
 ## Major changes
 
@@ -7,4 +9,8 @@
 ## New features
 
 * Now handles multi-word dictionary values.
+
+## Bug fixes
+
+* Fixed problem with computation of total words (#7).
 
