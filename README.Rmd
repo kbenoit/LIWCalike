@@ -1,7 +1,6 @@
 ---
-output:
-  md_document:
-    variant: markdown_github
+title: "LIWCalike: an R implementation of the Linguistic Inquiry and Word Count"
+output: github_document
 ---
 
 ```{r, echo = FALSE}
@@ -18,8 +17,6 @@ knitr::opts_chunk$set(
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/kn31ca24tnnrbwth/branch/master?svg=true)](https://ci.appveyor.com/project/kbenoit/liwcalike/branch/master)
 [![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/LIWCalike.svg?branch=master)](https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master)
 
-
-## LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
 
 Built on the quanteda package for text analysis, LIWCalikes provides a simple interface to the analysis of text by counting words and other textual features, including the application of a dictionary to produce a tabular report of percentages.  This provides similar functionality to the LIWC stand-alone software.  
 
@@ -55,6 +52,7 @@ Using it is quite straightforward:
 
 ```{r}
 library("LIWCalike")
+library("quanteda")
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 
