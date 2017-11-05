@@ -10,7 +10,7 @@
 #'   supplied for analysis
 #' @param tolower convert to common (lowser) case before tokenizing
 #' @param verbose if \code{TRUE} print status messages during processing
-#' @param ... options passed to \code{\link[quanteda]{tokenize}} offering
+#' @param ... options passed to \code{\link[quanteda]{tokens}} offering
 #'   finer-grained control over how "words" are defined
 #' @return a data.frame object containing the analytic results, one row per
 #'   document supplied
@@ -18,7 +18,7 @@
 #'   segmenting the text.  While this function does not supply segmentation
 #'   options, you can easily achieve the same effect by converting the input
 #'   object into a corpus (if it is not already a corpus) and using
-#'   \link[quanteda]{changeunits} or \link[quanteda]{segment} to split the input
+#'   \link[quanteda]{tokens} to split the input
 #'   texts into smaller units based on user-supplied tags, sentence, or
 #'   paragraph boundaries.
 #' @examples
@@ -26,13 +26,13 @@
 #'
 #' # examples for comparison
 #' txt <- c("The red-shirted lawyer gave her ex-boyfriend $300 out of pity :(.")
-#' myDict <- dictionary(list(people = c("lawyer", "boyfriend"),
+#' myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
 #'                           colorFixed = "red",
 #'                           colorGlob = "red*",
 #'                           mwe = "out of"))
 #' liwcalike(txt, myDict, what = "word")
 #' liwcalike(txt, myDict, what = "fasterword")
-#' (toks <- tokens(txt, what = "fasterword", removeHyphens = TRUE))
+#' (toks <- quanteda::tokens(txt, what = "fasterword", removeHyphens = TRUE))
 #' length(toks[[1]])
 #' # LIWC says 12 words
 #'
@@ -112,7 +112,7 @@ liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
         result <- cbind(result,
-                        as.data.frame(dfmDict / rep(result[["WC"]], each = nfeature(dfmDict)),
+                        as.data.frame(as.matrix(dfmDict) / matrix(rep(result[["WC"]], each = nfeature(dfmDict)), ncol = nfeature(dfmDict), byrow = TRUE),
                                       row.names = 1:nrow(result)) * 100)
 
     ## punctuation counts

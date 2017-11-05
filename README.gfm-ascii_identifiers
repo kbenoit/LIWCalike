@@ -1,3 +1,6 @@
+LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
+================
+
 [![CRAN
 Version](http://www.r-pkg.org/badges/version/LIWCalike)](http://cran.r-project.org/package=LIWCalike)
 ![Downloads](http://cranlogs.r-pkg.org/badges/LIWCalike) [![Travis-CI
@@ -6,9 +9,6 @@ Status](https://travis-ci.org/kbenoit/LIWCalike.svg?branch=master)](https://trav
 [![Appveyor Build
 status](https://ci.appveyor.com/api/projects/status/kn31ca24tnnrbwth/branch/master?svg=true)](https://ci.appveyor.com/project/kbenoit/liwcalike/branch/master)
 [![codecov.io](https://codecov.io/github/kbenoit/LIWCalike/LIWCalike.svg?branch=master)](https://codecov.io/github/kbenoit/LIWCalike/coverage.svg?branch=master)
-
-LIWCalike: an R implementation of the Linguistic Inquiry and Word Count
------------------------------------------------------------------------
 
 Built on the quanteda package for text analysis, LIWCalikes provides a
 simple interface to the analysis of text by counting words and other
@@ -35,35 +35,34 @@ analysis. If you prefer to have a complete, stand-alone user interface,
 then you should purchase and use the [LIWC standalone
 software](http://liwc.wpengine.com). This has several advantages:
 
--   LIWC allows direct importing of files, including binary (Word, pdf,
+  - LIWC allows direct importing of files, including binary (Word, pdf,
     etc) formats. To use **LIWCalike**, you will need to import these
     into the **quanteda** package first.  
     **LIWCalike** also works fine with simple character vectors, if you
     prefer to use standard R methods to create your input object (e.g.
     `readLines()`, `read.csv()`, etc.)
 
--   LIWC provides direct outputs in the form of csv, Excel files, etc.
+  - LIWC provides direct outputs in the form of csv, Excel files, etc.
     By contrast, **LIWCalike** returns a `data.frame`, which you have to
     export yourself (e.g. using `write.csv()`.)
 
--   LIWC provides easy segmentation, through a GUI. By contrast, with
+  - LIWC provides easy segmentation, through a GUI. By contrast, with
     **LIWCalike** you will have to segment the texts yourself.
     (**quanteda** provides easy ways to do this using `segment()` and
     `changeunits()`.)
 
--   LIWC color codes the dictionary value matches in your texts and
+  - LIWC color codes the dictionary value matches in your texts and
     displays these in a nice graphical window.
 
--   LIWC provides four composite measures that are not included in
+  - LIWC provides four composite measures that are not included in
     **LIWCalike**: “Analytic”, “Clout”, “Authentic”, and “Tone”. These
     are based on proprietary algorithms, as described and refernced in
     [Pennebaker, J.W., Boyd, R.L., Jordan, K., & Blackburn, K. (2015).
     The development and psychometric properties of LIWC2015. Austin, TX:
-    University of Texas at Austin. D OI:
-    10.15781/T29G6Z](http://liwc.wpengine.com/wp-content/uploads/2015/11/LIWC2015_LanguageManual.pdf).
+    University of Texas at Austin. D
+    OI: 10.15781/T29G6Z](http://liwc.wpengine.com/wp-content/uploads/2015/11/LIWC2015_LanguageManual.pdf).
 
-Using dictionaries with LIWCalike
----------------------------------
+## Using dictionaries with LIWCalike
 
 No dictionaries are supplied with **LIWCalike**, it is up to you to
 supply these. With the **quanteda** functions for creating or importing
@@ -143,8 +142,7 @@ output[, c(1:7, ncol(output)-2)]
 #> 10                                           22.22       0
 ```
 
-How to Install
---------------
+## How to Install
 
 **LIWCalike** is currently only available on GitHub, not on CRAN. The
 best method of installing it is through the **devtools** package:
@@ -154,8 +152,7 @@ best method of installing it is through the **devtools** package:
 This will also automatically install the **quanteda** package on which
 **LIWCalike** is built.
 
-Comments, feedback, and code of conduct
----------------------------------------
+## Comments, feedback, and code of conduct
 
 I welcome your comments and feedback. Please file issues on the issues
 page, and/or send me comments at <kbenoit@lse.ac.uk>.
