@@ -10,7 +10,7 @@
 #'   supplied for analysis
 #' @param tolower convert to common (lowser) case before tokenizing
 #' @param verbose if \code{TRUE} print status messages during processing
-#' @param ... options passed to \code{\link[quanteda]{tokenize}} offering
+#' @param ... options passed to \code{\link[quanteda]{tokens}} offering
 #'   finer-grained control over how "words" are defined
 #' @return a data.frame object containing the analytic results, one row per
 #'   document supplied

@@ -17,7 +17,7 @@ liwcalike(x, ...)
 \item{x}{input object, a \pkg{quanteda} \link[quanteda]{corpus} or character
 vector for analysis}
 
-\item{...}{options passed to \code{\link[quanteda]{tokenize}} offering
+\item{...}{options passed to \code{\link[quanteda]{tokens}} offering
 finer-grained control over how "words" are defined}
 
 \item{dictionary}{a \pkg{quanteda} \link[quanteda]{dictionary} object
