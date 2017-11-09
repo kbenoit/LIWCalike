@@ -18,6 +18,8 @@ Depends:
 Imports:
     stringi,
     quanteda (>= 0.99)
+Suggests:
+    testthat
 URL: http://github.com/kbenoit/LIWCalike
 Encoding: UTF-8
 BugReports: https://github.com/kbenoit/LIWCalike/issues
