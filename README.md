@@ -73,28 +73,28 @@ output <- liwcalike(data_char_testphrases, liwc2007dict)
 
 # view some results
 output[, c(1:7, ncol(output)-2)]
-#>    docname Segment WC WPS Sixltr   Dic
-#> 1    text1       1  8   3  37.50 37.50
-#> 2    text2       2  6   5  16.67 50.00
-#> 3    text3       3  4   2   0.00 25.00
-#> 4    text4       4 18  12  11.11 61.11
-#> 5    text5       5  4   1   0.00 25.00
-#> 6    text6       6  7   3  14.29 28.57
-#> 7    text7       7  7   3   0.00 42.86
-#> 8    text8       8  5   4   0.00 80.00
-#> 9    text9       9  9   2  11.11 11.11
-#> 10  text10      10  9   2  22.22 22.22
-#>    will do shorLINGUISTIC PROCESSES.FUNCTION WORDS Apostro
-#> 1                                            25.00       0
-#> 2                                            50.00       0
-#> 3                                             0.00       0
-#> 4                                            22.22       0
-#> 5                                             0.00       0
-#> 6                                            14.29       0
-#> 7                                            28.57       0
-#> 8                                            60.00       0
-#> 9                                            11.11       0
-#> 10                                           22.22       0
+#>    docname Segment WC WPS Sixltr   Dic LINGUISTIC PROCESSES.FUNCTION WORDS
+#> 1    text1       1  8   3  37.50 37.50                               25.00
+#> 2    text2       2  6   5  16.67 50.00                               50.00
+#> 3    text3       3  4   2   0.00 25.00                                0.00
+#> 4    text4       4 18  12  11.11 61.11                               22.22
+#> 5    text5       5  4   1   0.00 25.00                                0.00
+#> 6    text6       6  7   3  14.29 28.57                               14.29
+#> 7    text7       7  7   3   0.00 42.86                               28.57
+#> 8    text8       8  5   4   0.00 80.00                               60.00
+#> 9    text9       9  9   2  11.11 11.11                               11.11
+#> 10  text10      10  9   2  22.22 22.22                               22.22
+#>    Apostro
+#> 1        0
+#> 2        0
+#> 3        0
+#> 4        0
+#> 5        0
+#> 6        0
+#> 7        0
+#> 8        0
+#> 9        0
+#> 10       0
 ```
 
 How to Install
