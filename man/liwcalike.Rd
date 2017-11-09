@@ -51,7 +51,8 @@ Linguistic Inquiry and Word Count standalone software distributed at
 liwcalike(data_char_testphrases)
 
 # examples for comparison
-txt <- c("The red-shirted lawyer gave her yellow-haired, red nose ex-boyfriend $300 out of pity green green out :(.")
+txt <- c("The red-shirted lawyer gave her yellow-haired, red nose ex-boyfriend $300 
+            out of pity:(.")
 myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
                           colorFixed = "red",
                           colorGlob = c("red*", "yellow*", "green*"),

@@ -25,7 +25,8 @@
 #' liwcalike(data_char_testphrases)
 #'
 #' # examples for comparison
-#' txt <- c("The red-shirted lawyer gave her yellow-haired, red nose ex-boyfriend $300 out of pity green green out :(.")
+#' txt <- c("The red-shirted lawyer gave her yellow-haired, red nose ex-boyfriend $300 
+#'             out of pity:(.")
 #' myDict <- quanteda::dictionary(list(people = c("lawyer", "boyfriend"),
 #'                           colorFixed = "red",
 #'                           colorGlob = c("red*", "yellow*", "green*"),
@@ -109,7 +110,7 @@ liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = 
     ## Dic (percentage of words in the dictionary)
     comp_toks <- tokens_compound(toks, dictionary)
     comp_match <- tokens_select(comp_toks, dictionary)
-    result[["Dic"]] <- if (!is.null(uniq_dict)) ntoken(comp_match) / ntoken(comp_toks) * 100 else NA
+    result[["Dic"]] <- if (!is.null(dictionary)) ntoken(comp_match) / ntoken(comp_toks) * 100 else NA
 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
