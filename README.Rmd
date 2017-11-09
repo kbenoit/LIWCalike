@@ -58,7 +58,7 @@ library("quanteda")
 
 # read in the dictionary
 liwc2007dict <- dictionary(file = "~/Dropbox/QUANTESS/dictionaries/LIWC/LIWC2007.cat", 
-                           format = "wordstat", encoding = "WINDOWS-1252")
+                           format = "wordstat")
 tail(liwc2007dict, 1)
 
 # our test data
