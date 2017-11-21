@@ -19,9 +19,9 @@ Imports:
     stringi,
     quanteda (>= 0.99)
 Suggests:
-    testthat
+    testthat,
+    covr
 URL: http://github.com/kbenoit/LIWCalike
 Encoding: UTF-8
 BugReports: https://github.com/kbenoit/LIWCalike/issues
 RoxygenNote: 6.0.1
-Suggests: covr
