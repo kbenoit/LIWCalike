@@ -115,7 +115,7 @@ liwcalike.character <- function(x, dictionary = NULL, tolower = TRUE, verbose = 
     ## add the dictionary counts, transformed to percentages of total words
     if (!is.null(dictionary))
         result <- cbind(result,
-                        as.data.frame(as.matrix(dfmDict) / matrix(rep(result[["WC"]], each = nfeature(dfmDict)), ncol = nfeature(dfmDict), byrow = TRUE),
+                        as.data.frame(as.matrix(dfmDict) / matrix(rep(result[["WC"]], each = nfeat(dfmDict)), ncol = nfeat(dfmDict), byrow = TRUE),
                                       row.names = 1:nrow(result)) * 100)
 
     ## punctuation counts
