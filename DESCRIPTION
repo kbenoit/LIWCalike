@@ -21,6 +21,8 @@ Imports:
 Suggests:
     testthat,
     covr
+Remotes:
+    quanteda/quanteda
 URL: http://github.com/kbenoit/LIWCalike
 Encoding: UTF-8
 BugReports: https://github.com/kbenoit/LIWCalike/issues
