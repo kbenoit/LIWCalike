@@ -27,7 +27,7 @@ Using dictionaries with LIWCalike
 
 No dictionaries are supplied with **LIWCalike**, it is up to you to supply these. With the **quanteda** functions for creating or importing dictionaries, however, this is quite easy.
 
-With the LIWC 2007, external dictionaries were distributed with the software that could be used in the format read by Provalis Research's [*Wordstat*](http://provalisresearch.com/products/content-analysis-software/). Because I purchases a license for this product, I have that file and can use it with **LIWCalike**.
+With the LIWC 2007, external dictionaries were distributed with the software that could be used in the format read by Provalis Research's [*Wordstat*](http://provalisresearch.com/products/content-analysis-software/). Because I purchases a license for this product, I have that file and can use it with **LIWCalike**. With LIWC 2015 dictionaries need to be extracted from the `LIWC2015-app-1.4.0.jar` file found in the installation folder of LIWC 2015 using `jar -xf LIWC2015-jfx.jar` (the dictionary can then be found in `./app/lib/com/liwc/LIWC2015/data/dict/LIWC2015_English.dic`). Note that in this case `format="LIWC"` needs to specified as parameter to the `dictionary` function.
 
 Using it is quite straightforward:
 
@@ -95,6 +95,21 @@ output[, c(1:7, ncol(output)-2)]
 #> 8        0
 #> 9        0
 #> 10       0
+```
+
+LIWCalike can also be used from python with the help of [rpy2](http://rpy2.readthedocs.io/).
+```
+# R dependencies of LIWCAlike
+from rpy2.robjects.packages import importr
+from rpy2.robjects import pandas2ri
+liwcalike = importr("LIWCalike")
+quanteda = importr("quanteda")
+
+# Load Dictionary
+liwc2015dict = quanteda.dictionary(file="/path/to/LIWC2015_English.dic", format = "LIWC")
+txt = rpy2.robjects.vectors.StrVector(df.sentence)  # df.sentence is a pandas Series containing strings (i.e. dtype='O')
+result = liwcalike.liwcalike(txt, liwc2015dict)
+result_df = pandas2ri.ri2py(result)
 ```
 
 How to Install
