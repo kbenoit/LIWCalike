@@ -2,7 +2,7 @@
 ^\.Rproj\.user$
 ^README.Rmd$
 ^\.travis
-
+^revdep
 ^appveyor\.yml$
 ^CONDUCT\.md$
 ^codecov\.yml$
